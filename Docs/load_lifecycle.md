@@ -226,3 +226,18 @@ Examples:
 - Accepted → New (entered incorrectly)
 
 Backward transitions exist to correct reality, not to hide mistakes.
+
+## Database Enforcement
+
+This lifecycle is enforced at the database level.
+
+Authoritative schema:
+Docs/db/load_schema.sql
+
+Rules:
+- Load state is constrained to valid lifecycle states
+- All state changes are logged immutably
+- Backward transitions require a reason and are auditable
+- Cancellation is terminal and not a lifecycle state
+
+Application logic may restrict transitions further, but may not bypass database enforcement.
